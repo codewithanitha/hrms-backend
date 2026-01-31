@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class EmployeeController {
         return employeeService.addEmployee(employee);
     }
 
-    // READ
+    // READ ✅
     @GetMapping
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
@@ -28,8 +29,10 @@ public class EmployeeController {
 
     // UPDATE SALARY
     @PutMapping("/{id}")
-    public Employee updateSalary(@PathVariable Long id,
-                                 @RequestParam double percentage) {
+    public Employee updateSalary(
+            @PathVariable Long id,
+            @RequestParam double percentage
+    ) {
         return employeeService.updateSalary(id, percentage);
     }
 

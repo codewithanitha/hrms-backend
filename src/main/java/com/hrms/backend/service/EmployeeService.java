@@ -11,29 +11,27 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepository repository;
 
-    // CREATE
     public Employee addEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+        return repository.save(employee);
     }
 
-    // READ
     public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+        return repository.findAll();
     }
 
-    // UPDATE SALARY (percentage based)
     public Employee updateSalary(Long id, double percentage) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
-        double newSalary = employee.getSalary() +
-                (employee.getSalary() * percentage / 100);
-        employee.setSalary(newSalary);
-        return employeeRepository.save(employee);
+        Employee emp = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
+
+        double increment = emp.getSalary() * percentage / 100;
+        emp.setSalary(emp.getSalary() + increment);
+
+        return repository.save(emp);
     }
 
-    // DELETE
     public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }
