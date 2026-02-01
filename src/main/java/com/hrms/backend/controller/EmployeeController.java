@@ -9,25 +9,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(
+        origins = {
+                "http://localhost:3000",
+                "https://hrms-frontend-alpha-five.vercel.app"
+        }
+)
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
+    // =====================
     // CREATE
+    // =====================
     @PostMapping
     public Employee addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
-    // READ ✅
+    // =====================
+    // READ
+    // =====================
     @GetMapping
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
+    // =====================
     // UPDATE SALARY
+    // =====================
     @PutMapping("/{id}")
     public Employee updateSalary(
             @PathVariable Long id,
@@ -36,7 +47,9 @@ public class EmployeeController {
         return employeeService.updateSalary(id, percentage);
     }
 
+    // =====================
     // DELETE
+    // =====================
     @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
