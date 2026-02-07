@@ -73,7 +73,7 @@ for CI/CD automation.
 - Code smells and bugs analyzed
 - Quality Gate passed successfully
 
-<img width="1920" height="1080" alt="Screenshot 2026-01-31 200114" src="https://github.com/user-attachments/assets/ac27b847-721d-446f-aa4b-5dd5972609f6" />
+<img width="1920" height="1080" alt="Screenshot 2026-02-07 194051" src="https://github.com/user-attachments/assets/c5c16943-517a-4e59-9330-927747e66689" />
 
 ## Deployment Details
 
